@@ -82,7 +82,6 @@ GameManager.prototype.addRandomTile = function () {
     
     var value = Math.random() < 0.9 ? Math.pow(2,mod) : Math.pow(2,mod+1);
     var tile = new Tile(this.grid.randomAvailableCell(), value);
-    console.log(value);
     console.log(" ");
     
     this.grid.insertTile(tile);
@@ -185,7 +184,9 @@ GameManager.prototype.move = function (direction) {
           // Update the score
           self.score += merged.value;
           
-          // Update ax tile value
+          // Update max tile value
+          console.log(merged.value);
+          console.log(this.totalValue);
           if (merged.value > this.totalValue) this.totalValue = merged.value;
 
           // The mighty 2048 tile
