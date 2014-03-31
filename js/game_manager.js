@@ -76,7 +76,7 @@ GameManager.prototype.addRandomTile = function () {
   if (this.grid.cellsAvailable()) {
     
     //TODO figure out good formula for mod
-    var mod = Math.floor(log10(this.totalValue + 1)) + 1;
+    var mod = Math.floor(log10(this.totalValue) + 1);
     console.log(this.totalValue);
     console.log(mod);
     
@@ -84,14 +84,14 @@ GameManager.prototype.addRandomTile = function () {
     var tile = new Tile(this.grid.randomAvailableCell(), value);
     console.log(value);
     console.log(" ");
-    this.totalValue += value;
+    this.totalValue = value > this.totalValue ? value : this.totalValue;
     
     this.grid.insertTile(tile);
   }
 };
 
 function log10(val) {
-  return Math.log(val) / Math.LN10;
+  return Math.log(val) / Math.log(4);
 }
 
 // Sends the updated grid to the actuator
