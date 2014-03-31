@@ -73,16 +73,28 @@ GameManager.prototype.addStartTiles = function () {
 GameManager.prototype.addRandomTile = function () {
   if (this.grid.cellsAvailable()) {
     var total = 0;
-    this.grid.eachCell(function (x,y,tile){
-      
-      var cell, til;
+    this.grid.eachCell(function (x,y,tiles){
+      var self = this;
+
+      var tile;
+
+      for (var x = 0; x < this.size; x++) {
+        for (var y = 0; y < this.size; y++) {
+          tile = this.grid.cellContent({ x: x, y: y });
+          
+          console.log("Tile: " + tile);
+          console.log("Value: " + tile.value);
+        }
+      }
+
+     /* var cell, til;
       cell = { x: x, y: y };
       til = this.Grid.cellContent(cell);
       //console.log(cell);
       console.log("Tile: " + tile);
       console.log("Til: " + til);
       console.log("Value: " + tile.value);
-      //total += tile.value;
+      //total += tile.value;*/
     });
     //console.log(total);
     var value = Math.random() < 0.9 ? 2 : 4;
