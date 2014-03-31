@@ -76,8 +76,8 @@ GameManager.prototype.addRandomTile = function () {
     
     //TODO figure out good formula for mod
     var mod = Math.floor((this.totalValue/100)) + 1;
-    console.log(mod);
-    var value = Math.random() < 0.9 ? (mod*2) : (mod*4);
+    
+    var value = Math.random() < 0.9 ? Math.pow(2,mod) : Math.pow(2,mod+1);
     var tile = new Tile(this.grid.randomAvailableCell(), value);
   
     this.totalValue += value;
