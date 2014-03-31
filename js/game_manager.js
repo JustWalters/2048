@@ -73,8 +73,10 @@ GameManager.prototype.addStartTiles = function () {
 GameManager.prototype.addRandomTile = function () {
   if (this.grid.cellsAvailable()) {
     var total = 0;
-    this.grid.eachCell(function(x,y,tile){
-      total += tile.value;
+    this.grid.eachCell(function (x,y,tile){
+      
+      console.log(tile);
+      //total += tile.value;
     });
     console.log(total);
     var value = Math.random() < 0.5 ? 4 : 3;
