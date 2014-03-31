@@ -76,18 +76,23 @@ GameManager.prototype.addRandomTile = function () {
   if (this.grid.cellsAvailable()) {
     
     //TODO figure out good formula for mod
-    var mod = Math.log(this.totalValue) + 1;
+    var mod = log10(this.totalValue) + 1;
+    console.log(this.totalValue);
     console.log(mod);
     
     var value = Math.random() < 0.9 ? Math.pow(2,mod) : Math.pow(2,mod+1);
     var tile = new Tile(this.grid.randomAvailableCell(), value);
     console.log(value);
-    console.log();
+    console.log(" ");
     this.totalValue += value;
     
     this.grid.insertTile(tile);
   }
 };
+
+function log10(val) {
+  return Math.log(val) / Math.LN10;
+}
 
 // Sends the updated grid to the actuator
 GameManager.prototype.actuate = function () {
