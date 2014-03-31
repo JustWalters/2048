@@ -186,8 +186,8 @@ GameManager.prototype.move = function (direction) {
           
           // Update max tile value
           console.log(merged.value);
-          console.log(this.totalValue);
-          if (merged.value > this.totalValue) this.totalValue = merged.value;
+          console.log(self.totalValue);
+          if (merged.value > self.totalValue) self.totalValue = merged.value;
 
           // The mighty 2048 tile
           if (merged.value === 2048) self.won = true;
