@@ -5,7 +5,6 @@ function GameManager(size, InputManager, Actuator, StorageManager) {
   this.actuator       = new Actuator;
 
   this.startTiles     = 2;
-  this.totalValue     = 0;
   
   this.inputManager.on("move", this.move.bind(this));
   this.inputManager.on("restart", this.restart.bind(this));
@@ -77,7 +76,7 @@ GameManager.prototype.addRandomTile = function () {
   if (this.grid.cellsAvailable()) {
     
     //TODO figure out good formula for mod
-    var mod = Math.floor((this.totalValue/100)) + 1;
+    var mod = Math.log(this.totalValue) + 1;
     
     var value = Math.random() < 0.9 ? Math.pow(2,mod) : Math.pow(2,mod+1);
     var tile = new Tile(this.grid.randomAvailableCell(), value);
