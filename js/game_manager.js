@@ -51,7 +51,7 @@ GameManager.prototype.setup = function () {
   } else {
     this.grid        = new Grid(this.size);
     this.score       = 0;
-    this.totalValue  = 0;
+    this.totalValue  = 2;
     this.over        = false;
     this.won         = false;
     this.keepPlaying = false;
