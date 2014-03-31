@@ -77,8 +77,9 @@ GameManager.prototype.addRandomTile = function () {
       
       var cell, tile;
       cell = { x: x, y: y };
-      tile = this.grid.cellContent(cell);
-      console.log(tile.value);
+      //tile = this.grid.cellContent(cell);
+      console.log(cell);
+      console.log(this.grid);
       //total += tile.value;
     });
     console.log(total);
