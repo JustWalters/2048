@@ -76,7 +76,7 @@ GameManager.prototype.addRandomTile = function () {
   if (this.grid.cellsAvailable()) {
     
     //TODO figure out good formula for mod
-    var mod = Math.log(this.totalValue + 1);
+    var mod = Math.floor(Math.log(this.totalValue + 1));
     console.log(this.totalValue);
     console.log(mod);
     
