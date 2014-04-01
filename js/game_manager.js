@@ -76,6 +76,7 @@ GameManager.prototype.addRandomTile = function () {
   if (this.grid.cellsAvailable()) {
     
     //TODO figure out good formula for mod
+    //TODO try if # of tiles w/min values is odd, generate that. Else min*2
     var mod = Math.floor(log10(this.totalValue) + 1);
     console.log(this.totalValue);
     console.log(mod);
