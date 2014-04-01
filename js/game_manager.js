@@ -90,7 +90,7 @@ GameManager.prototype.addRandomTile = function () {
 };
 
 function log10(val) {
-  return Math.log(val) / Math.log(4);
+  return Math.log(val) / Math.log(8);
 }
 
 // Sends the updated grid to the actuator
