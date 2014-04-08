@@ -44,14 +44,16 @@ GameManager.prototype.setup = function () {
     this.grid        = new Grid(previousState.grid.size,
                                 previousState.grid.cells); // Reload grid
     this.score       = previousState.score;
-    this.totalValue  = previousState.totalValue;
+    this.minValue    = previousState.minValue;
+    this.numOfMin    = previousState.numOfMin;
     this.over        = previousState.over;
     this.won         = previousState.won;
     this.keepPlaying = previousState.keepPlaying;
   } else {
     this.grid        = new Grid(this.size);
     this.score       = 0;
-    this.totalValue  = 2;
+    this.minValue    = 2;
+    this.numOfMin    = 1;
     this.over        = false;
     this.won         = false;
     this.keepPlaying = false;
@@ -77,13 +79,12 @@ GameManager.prototype.addRandomTile = function () {
     
     //TODO figure out good formula for mod
     //TODO try if # of tiles w/min values is odd, generate that. Else min*2
-    var mod = Math.floor(log10(this.totalValue) + 1);
-    console.log(this.totalValue);
-    console.log(mod);
+    //var mod = Math.floor(log10(this.minValue) + 1);
     
-    var value = Math.random() < 0.9 ? Math.pow(2,mod) : Math.pow(2,mod+1);
+    var value = this.numOfMin%2 != 0 ? this.minValue : this.minValue*2;
     var tile = new Tile(this.grid.randomAvailableCell(), value);
-    console.log(" ");
+    
+    if (value === this.minValue) this.numOfMin++;
     
     this.grid.insertTile(tile);
   }
@@ -121,7 +122,8 @@ GameManager.prototype.serialize = function () {
   return {
     grid:        this.grid.serialize(),
     score:       this.score,
-    totalValue:  this.totalValue,
+    minValue:    this.minValue,
+    numOfMin:    this.numOfMin,
     over:        this.over,
     won:         this.won,
     keepPlaying: this.keepPlaying
@@ -185,10 +187,15 @@ GameManager.prototype.move = function (direction) {
           // Update the score
           self.score += merged.value;
           
-          // Update max tile value
-          console.log(merged.value);
-          console.log(self.totalValue);
-          if (merged.value > self.totalValue) self.totalValue = merged.value;
+          // Update min tile value
+            console.log(self.minValue);
+            if (tile.value === self.minValue && self.numOfMin === 2){
+                self.minValue*=2;
+                self.numOfMin = 1;
+            }
+            console.log(self.minValue);
+            console.log(" ");
+          
 
           // The mighty 2048 tile
           if (merged.value === 2048) self.won = true;
